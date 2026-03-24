@@ -1,46 +1,52 @@
-# LAB_MOBILE_3_2026
+# Tugas Praktikum Pemrograman Mobile: Activity & Intent
 
-Repositori ini digunakan untuk mengumpulkan tugas Praktikum Pemrograman Mobile (Java/Android Native) Tahun 2026.
+Proyek ini adalah implementasi replika antarmuka profil Instagram yang dikembangkan menggunakan Java dan Android Studio. Fokus utama tugas ini adalah penerapan **Layouting**, **Explicit Intent**, dan **Activity Result API** untuk manajemen data antar halaman.
 
-## 👥 Daftar Anggota
+## 📋 Kebutuhan Tugas
 
-| NIM | Nama |
-| :--- | :--- |
-| H071211072 | DEWA RESCUE VIRGIAWANSYAH |
-| H071241007 | AHMAD RIZKY AMIS |
-| H071241016 | AQIILA ZAIZAAFUN KURNIAWAN |
-| H071241025 | ZAHRA AULIA PUTRI |
-| H071241034 | DEWI ASTUTI MUCHTAR |
-| H071241043 | DIANI ANNISAH |
-| H071241052 | ISNADIA NURFADILLAH |
-| H071241063 | YUD BRYAWAN |
-| H071241072 | ANDI FA'ATHIR EKA SAPUTRA A.A |
-| H071241092 | NOVELIN FITRI PHANDIKA |
-| H071241091 | MUHAMMAD FATHIR SYABHAN |
+Sesuai dengan instruksi praktikum, aplikasi ini memenuhi kriteria berikut:
 
-## 📂 Struktur Direktori
+1. Layouting Serupa: Implementasi desain yang mempertahankan struktur serta elemen utama profil Instagram (Header, Bio, Statistik, Highlights, dan Feed Grid)[^3][^7].
 
-Setiap anggota wajib mengikuti struktur folder berikut untuk menjaga kerapian repositori:
+2. Aksi onClick: Menambahkan navigasi dari halaman profil ke halaman "Edit Profile"[^4].
 
-```text
-LAB_MOBILE_3_2026/
-├── NIM_ANDA/
-│   └── tugas-praktikum-1/
-│       ├── app/
-│       ├── build.gradle
-│       └── ... (file project lainnya)
-├── NIM_TEMAN_LAIN/
-│   └── tugas-praktikum-1/
-└── .gitignore
+3. Edit Data: Pengguna dapat mengubah nama, username, bio, jenis kelamin, hingga foto profil[^5].
 
-```
+4. Data Synchronization: Setiap perubahan data pada halaman Edit ditampilkan kembali secara akurat pada halaman profil utama[^6].
 
-## ⚠️ Peringatan Penting (Harus Dibaca!)
+## 🛠️ Fitur & Implementasi Teknis
 
-Untuk menjaga ukuran repositori agar tetap ringan dan menghindari konflik, **DILARANG KERAS** melakukan *push* pada folder-folder hasil *generate* otomatis dari Android Studio seperti:
+### 1. Navigasi & Komunikasi (Intent)
 
-1. **`build/`** (sangat berat dan tidak diperlukan).
-2. **`.gradle/`**
-3. **`.idea/`**
-4. **`*.iml`**
-5. **`local.properties`** (berisi path SDK personal).
+- **Activity Result API**: Menggunakan `ActivityResultLauncher` untuk menangani alur balik data (_callback_) dari `NextActivity` ke `MainActivity` secara modern dan efisien.
+- **Reusable Editor**: Menggunakan `EditFieldActivity` sebagai komponen input tunggal yang dapat digunakan kembali untuk berbagai field teks (Nama, Username, Bio).
+
+### 2. Manajemen Identitas Visual
+
+- **Photo Picker**: Integrasi dengan `PickVisualMedia` untuk memilih foto profil secara dinamis dari galeri perangkat.
+- **Resource vs URI Handling**: Logika programatis untuk beralih antara foto bawaan aplikasi (_Resource Drawable_) dan foto pilihan pengguna (_URI_).
+
+### 3. Komponen Antarmuka (UI)
+
+- **ShapeableImageView**: Digunakan untuk membuat foto profil dan highlight berbentuk lingkaran sesuai standar desain Instagram.
+- **NestedScrollView & GridLayout**: Menyusun konten feed agar tetap responsif dan dapat di-scroll dengan lancar pada berbagai ukuran layar.
+- **Edge-to-Edge**: Pengaturan padding sistem (Window Insets) agar UI mengisi area layar secara maksimal hingga ke bawah status bar.
+
+## 📂 Struktur Proyek
+
+- `MainActivity.java`: Halaman profil utama yang menampilkan data model `UserProfile`.
+- `NextActivity.java`: Halaman menu edit profil untuk memilih field yang akan diubah atau mengganti foto.
+- `EditFieldActivity.java`: Form input dinamis untuk mengubah data teks.
+- `PostDetailActivity.java`: Tampilan detail saat salah satu item feed pada grid diklik.
+- `UserProfile.java`: Kelas model untuk menyimpan state data pengguna.
+
+## 🚀 Cara Menjalankan
+
+1. Pastikan Android Studio telah terinstal.
+2. Clone repository dan lakukan **Sync Gradle**.
+3. Jalankan aplikasi di Emulator atau perangkat fisik (Min. API Level 24).
+4. Klik tombol **Edit Profil** untuk menguji fungsionalitas perubahan data.
+
+---
+
+_Dibuat untuk memenuhi Tugas Praktikum Pemrograman Mobile - NIM H071241043_
